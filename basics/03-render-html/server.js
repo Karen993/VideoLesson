@@ -2,14 +2,17 @@ let http = require('http');
 let fs = require('fs');
 
 function onRequest(request, response){
-    response.writeHead(200, {'Content-Type': 'text/plane'});
+    response.writeHead(200, {'Content-Type': 'text/html'});
     fs.readFile('./index.html', null, function(error, date){
         if(error){
             response.writeHead(404);
             response.write('file not found')
+        }else{
+            response.write(date)
         }
+        response.end();
     })
-    response.end();
+
 }
 
 http.createServer(onRequest).listen(8000);
