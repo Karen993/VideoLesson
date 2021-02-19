@@ -3,17 +3,13 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', condition: true, anyArray: [1,2,3] });
+  res.render('index', { title: 'Form Validation',success: false, errors: req.session.errors });
+  req.session.errors = null;
 });
 
-router.get('/test/:id',function(req, res, next) {
-  res.render('test', {output: req.params.id})
-})
+router.post('/submit', function (req, res, next) {
+  //check validity
 
-router.post('/test/submit', function(req, res, next){
-  var id = req.body.id;
-  res.redirect('/test/' + id)
 })
-
 
 module.exports = router;
